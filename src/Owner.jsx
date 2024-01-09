@@ -6,7 +6,7 @@ const Owner = () => {
         <h1 className="text-[2rem] font-bold mb-8">Pond - Group D - JSD6</h1>
         <img
           className="max-w-[270px] block w-full"
-          src="/assets/Profile.jpg"
+          src="https://scontent.fkdt3-1.fna.fbcdn.net/v/t1.6435-9/80620236_2654728741307596_6424680250524827648_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=be3454&_nc_eui2=AeElf-kFIMnmGHEOOwIrGpTKTwGSQNnXTTdPAZJA2ddNN__GCceJRrUr033qYiUajr5z8Y-X5A48-Y0OS0uEDt2x&_nc_ohc=Z7M80LWI8gQAX-P5NjE&_nc_ht=scontent.fkdt3-1.fna&oh=00_AfCswZfRIZT8gou6B1vI9ux5TQQfD9z2vg5ZmpSRSLmluA&oe=65C47BBE"
           alt="Profile-image"
         />
         <div className="bio-section mt-12 text-center">
