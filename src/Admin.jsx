@@ -1,32 +1,73 @@
 import React, { useState } from "react";
 import SectionButton from "./SectionBtn";
-const Admin = ({ employees, sectionBtn, handleEmployees }) => {
+import axios from "axios";
+
+const Admin = ({
+  employees,
+  sectionBtn,
+  handleEmployees,
+  reload,
+  setReload,
+}) => {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [position, setPosition] = useState("");
 
-  const handleSave = () => {
-    if (name && lastname && position) {
-      const id =
-        employees.length > 0 ? employees[employees.length - 1].id + 1 : 0;
-      const newEmployee = {
-        id,
-        name,
-        lastname,
-        position,
-      };
-      const updatedEmployees = [...employees, newEmployee];
-      handleEmployees(updatedEmployees);
-    } else {
-      alert("Please fill in all fields before saving.");
+  // const handleSave = () => {
+  //   if (name && lastname && position) {
+  //     const id =
+  //       employees.length > 0 ? employees[employees.length - 1].id + 1 : 0;
+  //     const newEmployee = {
+  //       id,
+  //       name,
+  //       lastname,
+  //       position,
+  //     };
+  //     const updatedEmployees = [...employees, newEmployee];
+  //     handleEmployees(updatedEmployees);
+
+  //     setName("");
+  //     setLastname("");
+  //     setPosition("");
+  //   } else {
+  //     alert("Please fill in all fields before saving.");
+  //   }
+  // };
+
+  const createData = async (name, lastname, position) => {
+    const newEmployee = {
+      name,
+      lastname,
+      position,
+    };
+    const response = await axios.post(
+      "https://jsd5-mock-backend.onrender.com/members",
+      newEmployee
+    );
+
+    if (response.status === 200) {
+      setReload(!reload);
     }
   };
-  const handleDelete = (deleteEmployee) => {
-    const filterEmployees = employees.filter(
-      (employee, index) => index !== deleteEmployee
-    );
-    handleEmployees(filterEmployees);
+
+  const removeData = async (id) => {
+    if (employees.some((employee) => employee.id === id)) {
+      const response = await axios.delete(
+        `https://jsd5-mock-backend.onrender.com/member/${id}`
+      );
+      if (response.status === 200) {
+        setReload(!reload);
+      }
+    }
   };
+
+  // const handleDelete = (deleteEmployee) => {
+  //   const filterEmployees = employees.filter(
+  //     (employee, index) => index !== deleteEmployee
+  //   );
+  //   handleEmployees(filterEmployees);
+  // };
+
   return (
     <div className="flex flex-col text-center items-center">
       <h1 className="text-5xl font-bold max-w-[477px] mb-12 mx-auto">
@@ -63,7 +104,7 @@ const Admin = ({ employees, sectionBtn, handleEmployees }) => {
         />
         <button
           className="text-white bg-[#5E5BFF] rounded px-4 py-2"
-          onClick={handleSave}
+          onClick={() => createData(name, lastname, position)}
         >
           Save
         </button>
@@ -93,8 +134,8 @@ const Admin = ({ employees, sectionBtn, handleEmployees }) => {
                 <td className="flex-1 border border-[#B9B9B9] p-2">
                   <button
                     className="text-red-600 font-bold"
-                    value={index}
-                    onClick={() => handleDelete(index)}
+                    value={employee.id}
+                    onClick={() => removeData(employee.id)}
                   >
                     Delete
                   </button>
