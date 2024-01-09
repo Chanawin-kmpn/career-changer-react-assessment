@@ -46,11 +46,12 @@ const Home = () => {
       ) : sector === "user" ? (
         <User employees={employees} sectionBtn={handleSection} />
       ) : (
-        <>
-          <h1>Generation Thailand</h1>
-          <h2>React-Assessment</h2>
+        <div className="flex flex-col text-center items-center">
+          <h1 className="text-5xl font-bold max-w-[477px] mb-12">
+            Generation Thailand React-Assessment
+          </h1>
           <SectionButton sectionBtn={handleSection} />
-        </>
+        </div>
       )}
     </Layout>
   );

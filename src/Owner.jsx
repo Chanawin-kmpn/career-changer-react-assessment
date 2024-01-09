@@ -2,11 +2,15 @@ import Layout from "./Layout";
 const Owner = () => {
   return (
     <Layout>
-      <div className="profile-section ">
-        <h1>Pond - Group D - JSD6</h1>
-        <img src="/src/assets/Profile.jpg" alt="Profile-image" />
-        <div className="bio-section">
-          <h4>Short Biograply:</h4>
+      <div className="profile-section flex flex-col items-center mt-[-30px]">
+        <h1 className="text-[2rem] font-bold mb-8">Pond - Group D - JSD6</h1>
+        <img
+          className="max-w-[270px] block w-full"
+          src="/src/assets/Profile.jpg"
+          alt="Profile-image"
+        />
+        <div className="bio-section mt-12 text-center">
+          <h4 className="font-bold mb-8">Short Biograply:</h4>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit beatae
             soluta in eaque dolorem! Provident consectetur, labore odit ut

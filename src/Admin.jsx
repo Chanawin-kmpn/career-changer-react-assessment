@@ -28,13 +28,17 @@ const Admin = ({ employees, sectionBtn, handleEmployees }) => {
     handleEmployees(filterEmployees);
   };
   return (
-    <>
-      <h1>Generation Thailand</h1>
-      <h2>Home - Admin Sector</h2>
+    <div className="flex flex-col text-center items-center">
+      <h1 className="text-5xl font-bold max-w-[477px] mb-12 mx-auto">
+        Generation Thailand Home-Admin Sector
+      </h1>
       <SectionButton sectionBtn={sectionBtn} />
-      <h3>Create User Here</h3>
-      <div>
+      <h3 className="font-bold text-xl self-start mt-12 mb-4">
+        Create User Here
+      </h3>
+      <div className="flex gap-12 mb-24">
         <input
+          className="w-[300px] px-4 py-2 rounded"
           type="text"
           placeholder="Name"
           onChange={(e) => {
@@ -42,6 +46,7 @@ const Admin = ({ employees, sectionBtn, handleEmployees }) => {
           }}
         />
         <input
+          className="w-[300px] px-4 py-2 rounded"
           type="text"
           placeholder="Last Name"
           onChange={(e) => {
@@ -49,40 +54,57 @@ const Admin = ({ employees, sectionBtn, handleEmployees }) => {
           }}
         />
         <input
+          className="w-[300px] px-4 py-2 rounded"
           type="text"
           placeholder="Position"
           onChange={(e) => {
             setPosition(e.target.value);
           }}
         />
-        <button onClick={handleSave}>Save</button>
+        <button
+          className="text-white bg-[#5E5BFF] rounded px-4 py-2"
+          onClick={handleSave}
+        >
+          Save
+        </button>
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Postition</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee, index) => (
-            <tr key={index}>
-              <td>{employee.name}</td>
-              <td>{employee.lastname}</td>
-              <td>{employee.position}</td>
-              <td>
-                <button value={index} onClick={() => handleDelete(index)}>
-                  Delete
-                </button>
-              </td>
+      <div className="table-section table-section min-w-[600px] mt-12 border-collapse border-1 border-[#B9B9B9]">
+        <table className="flex flex-col min-w-[800px]">
+          <thead className="flex flex-col bg-[#f0f0f0] ">
+            <tr className="flex">
+              <th className="flex-1 border border-[#B9B9B9] p-2">Name</th>
+              <th className="flex-1 border border-[#B9B9B9] p-2">Last Name</th>
+              <th className="flex-1 border border-[#B9B9B9] p-2">Postition</th>
+              <th className="flex-1 border border-[#B9B9B9] p-2">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+          </thead>
+          <tbody className="flex flex-col bg-white">
+            {employees.map((employee, index) => (
+              <tr className="flex" key={index}>
+                <td className="flex-1 border border-[#B9B9B9] p-2">
+                  {employee.name}
+                </td>
+                <td className="flex-1 border border-[#B9B9B9] p-2">
+                  {employee.lastname}
+                </td>
+                <td className="flex-1 border border-[#B9B9B9] p-2">
+                  {employee.position}
+                </td>
+                <td className="flex-1 border border-[#B9B9B9] p-2">
+                  <button
+                    className="text-red-600 font-bold"
+                    value={index}
+                    onClick={() => handleDelete(index)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
